@@ -47,15 +47,13 @@ def train_model(df):
     ])
 
     model.fit(X, y_log)
-    y_pred = model.predict(X)
-    r2 = r2_score(np.expm1(y_log), np.expm1(y_pred))
-    return model, r2
+    return model
 
 def main():
     st.title("Esport Total Earnings prediction")
 
     df = load_data()
-    model, accuracy = train_model(df)
+    model = train_model(df)
 
     # UI inputok
     game = st.selectbox("Válaszd ki a játékot:", options=df['Game'].unique())
@@ -80,7 +78,6 @@ def main():
         pred_log = model.predict(input_df)[0]
         pred = np.expm1(pred_log)
         st.success(f"Becsült Total Earnings: ${pred:,.2f}")
-        st.info(f"A modell becslésének pontossága: {accuracy * 100:.2f}%")
 
 if __name__ == "__main__":
     main()
