@@ -43,7 +43,7 @@ def train_model(df):
 
     model = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('regressor', GradientBoostingRegressor(n_estimators=355, learning_rate=0.1, max_depth=3, subsample=0.8, random_state=42))
+        ('regressor', GradientBoostingRegressor(n_estimators=355, learning_rate=0.35, max_depth=3, subsample=0.8, random_state=42))
     ])
 
     model.fit(X, y_log)
