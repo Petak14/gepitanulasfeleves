@@ -64,7 +64,7 @@ def main():
     release_date = st.number_input("Release Date (év)", min_value=1980, max_value=2030, value=2010)
     offline_earnings = st.number_input("Offline Earnings", min_value=0.0, value=0.0, step=1000.0)
     percent_offline = st.slider("Percent Offline (%)", min_value=0.0, max_value=100.0, value=50.0)
-    total_players = st.number_input("Total Players", min_value=0, value=1000, step=10)
+    total_players = st.number_input("Total Players", min_value=0, value=1000, step=100)
     total_tournaments = st.number_input("Total Tournaments", min_value=0, value=50, step=1)
 
     input_df = pd.DataFrame({
@@ -81,7 +81,7 @@ def main():
         pred_log = model.predict(input_df)[0]
         pred = np.expm1(pred_log)
         st.success(f"Becsült Total Earnings: ${pred:,.2f}")
-        st.info(f"A modell becslésének pontossága: {accuracy * 100:.2f}% (R² érték)")
+        st.info(f"A modell becslésének pontossága: {accuracy * 100:.2f}%")
 
 if __name__ == "__main__":
     main()
